@@ -1,34 +1,89 @@
 // React Imports
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-import  LinearGradient  from 'react-native-linear-gradient';
-
+import LinearGradient from 'react-native-linear-gradient';
 import SCard from '../../customcore/SCard';
+import { View, Text, Alert, FlatList, TouchableOpacity } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { Divider, Title } from 'react-native-paper';
+import HCI from '../../customcore/HCI';
+import hoteldata from '../../assets/constants/hoteldata.js'
+
 
 export default function Home() {
-  console.disableYellowBox = true;
+
   return (
-    <LinearGradient colors= {['#ebffff','#f0ffff','#f5ffff','#faffff']} style={{ flex: 1 }} >
-      <SCard type='flight' title={'Flights'} />
-      <SCard type='bus' title={'Bus'} />
+    <LinearGradient colors={['#ebffff', '#f0ffff', '#f5ffff', '#faffff']} style={{ height: '100%' }} >
+      <ScrollView style={{ height: '100%' }}>
 
-      {/* you can also pass in your additional styles. will get appended */}
-      <SCard type='train' title={'sample big text'} cardStyle={{ elevation: 0, width: 150 }} />
-      <SCard type='train' title={'sample big text'} textStyle={{ elevation: 0, width: 150 }} />
+        <View style={{ marginBottom: 10, width: '100%', height: 70, backgroundColor: 'blue', borderBottomLeftRadius: 35, borderBottomRightRadius: 35 }}>
+          <Text style={{ width: '100%', flex: 1, textAlign: 'center', textAlignVertical: 'center', fontSize: 25, fontWeight: 'bold', color: 'white' }}>
+            EZ-Payments
+        </Text>
+        </View>
 
-      {/* to use the card to fetch on online image use 'toFetch' prop */}
-      <SCard toFetch={true} title={'Fetched Online'} source={'https://n3.sdlcdn.com/imgs/a/8/p/Fetch-SDL441219400-1-5190a.jpg'} />
+        <View style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
+          <Title style={{ marginLeft: 15, marginBottom: 15 }}>Recharge and Billings</Title>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+            <SCard type='phonerecharge' title={'Phone'} onPress={() => Alert.alert('working')} />
+            <SCard type='otherrecharge' title={'Other Recharge'} />
+            <SCard type='bills' title={'Bills'} />
+          </View>
+          <Title style={{ marginTop: 10, marginLeft: 15, marginBottom: 15 }}>Bookings</Title>
+
+          <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+            <SCard type='flight' title={'Flights'} />
+            <SCard type='train' title={'Trains'} />
+            <SCard type='bus' title={'Bus'} />
+          </View>
+        </View>
+
+
+        <Divider style={{ borderWidth: 0.3, width: '95%', alignSelf: 'center', marginBottom: 15, marginTop: 15 }} />
+
+
+        <Title style={{ marginLeft: 15 }}> Deals on Hotel Bookings!</Title>
+
+        <View
+          style={{
+            width: '100%',
+            height: 150,
+            marginTop: 5,
+          }}>
+          <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            data={hoteldata}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <TouchableOpacity activeOpacity={0.5} style={{ flexDirection: 'column', }}>
+                <HCI uri={item.source} textTitle={item.title} isHome={true} />
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode={'tail'}
+                  style={{
+                    textAlign: 'left',
+                    marginLeft: 10,
+                    width: 150
+                  }}
+                >
+                  {item.title} -
+                  {item.deal}
+                </Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+
+
+        <Divider style={{ borderWidth: 0.3, width: '95%', alignSelf: 'center', marginBottom: 15, marginTop: 15 }} />
+
+
+        <Title style={{ marginLeft: 15 }}> # Trending Donations</Title>
+
+
+      </ScrollView>
     </LinearGradient>
   )
 }
 
-const styles = StyleSheet.create({
-
-})
