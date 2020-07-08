@@ -1,5 +1,4 @@
 import React from 'react'
-
 import FastImage from 'react-native-fast-image'
 import PLACE_HOLDER_DEFAULT from '../assets/defaultlogo.png';
 
@@ -37,7 +36,7 @@ class SImage extends React.Component {
             <FastImage
                 {...this.props}
                 style={style}
-                source={require('../assets/flight.png'), { cache: this.props.cacheControl, priority: this.props.priorityValue }}
+                source={{ uri: source, cache: this.props.cacheControl, priority: this.props.priorityValue }}
                 fallback={!this.state.imageLoading}
                 onError={this.imageLoadError}
                 onProgress={this.imageLoadProgress}

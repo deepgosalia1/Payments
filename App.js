@@ -1,22 +1,32 @@
 import React from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  StatusBar,
 } from 'react-native';
-import SCard from './src/customcore/SCard';
-import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
-import DrawerScreen from './src/screens/DrawerScreens';
-import {Avatar, Text, Image} from 'react-native-paper';
+import Login from './src/screens/login';
+import { createStackNavigator } from '@react-navigation/stack';
+import SignUp from './src/screens/login/signup';
+import { NavigationContainer } from '@react-navigation/native';
+
+
+function LoginStack() {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator headerMode={'none'}>
+      <Stack.Screen name={'SignInScreen'} component={Login} />
+      <Stack.Screen name={'SignupScreen'} component={SignUp} />
+    </Stack.Navigator>
+  )
+}
 
 export default function App() {
   console.disableYellowBox = true;
+
   return (
     <NavigationContainer>
-       <DrawerScreen />
+      <SafeAreaView style={{ flex: 1 }}>
+        <LoginStack />
+      </SafeAreaView>
     </NavigationContainer>
+
   )
 }
