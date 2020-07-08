@@ -35,12 +35,8 @@ function DrawerContent (props){
             <TouchableOpacity onPress = {()=> props.navigation.navigate('Profile')}>
             <View style={styles.userInfoSection}>
                 <View style={{ flexDirection: 'row', marginTop: 15 }}>
-                    <Avatar.Image
-                        source={{
-                            uri: 'https://api.adorable.io/avatars/50/abott@adorable.png'
-                        }}
-                        size={50}
-                    />
+                    <Avatar.Image source={{ uri: 'https://api.adorable.io/avatars/50/abott@adorable.png'  }}
+                        size={50} />
                     <View style={{ marginLeft: 15, flexDirection: 'column' }}>
                         <Title style={styles.title}>John Doe</Title>
                         <Caption style={styles.caption}>@j_doe</Caption>
