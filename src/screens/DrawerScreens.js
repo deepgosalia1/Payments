@@ -7,7 +7,7 @@ import {
     Drawer
 } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import Home from './Home';
 import Flights from './Flights';
 import Train from './Train';
@@ -26,6 +26,8 @@ function DrawerContent(props) {
             .signOut()
             .then(() => console.log('User signed out!'));
     }
+    const [active, setActive] = React.useState('');
+
     return (
         <View>
             <TouchableOpacity onPress = {()=> props.navigation.navigate('Profile')}>
@@ -41,9 +43,12 @@ function DrawerContent(props) {
                 </View>
             </TouchableOpacity>
             <Drawer.Section style={styles.drawerSection}>
+                <DrawerItemList {...props}>
                 <DrawerItem
+                    focused
                     label="Home"
-                    onPress={() => { props.navigation.navigate('Home') }} />
+                    onPress={() => { props.navigation.navigate('Home') 
+                    setActive('first')}} />
                 <DrawerItem
                     label="Flights"
                     onPress={() => { props.navigation.navigate('Flights') }} />
@@ -51,6 +56,7 @@ function DrawerContent(props) {
                     label="Train"
                     onPress={() => { props.navigation.navigate('Train') }} />
                 <DrawerItem
+                    activeBackgroundColor='black'
                     label="Bus"
                     onPress={() => { props.navigation.navigate('Bus') }} />
                 <DrawerItem
@@ -59,6 +65,7 @@ function DrawerContent(props) {
                 <DrawerItem
                     label="Web Check-in"
                     onPress={() => { props.navigation.navigate('WebCheckIn') }} />
+                    </DrawerItemList>
             </Drawer.Section>
             <Drawer.Section style={styles.bottomDrawerSection}>
                 <DrawerItem
@@ -71,9 +78,9 @@ function DrawerContent(props) {
 export default function DrawerScreen() {
     return (
         <Drawer0.Navigator initialRouteName="Home" drawerContent={props => <DrawerContent {...props} />} >
-            <Drawer0.Screen name="Home" component={Home} />
-            <Drawer0.Screen name="Flights" component={Flights} />
-            <Drawer0.Screen name="Train" component={Train} />
+            <Drawer0.Screen  activeBackgroundColor='black' name="Home" component={Home} />
+            <Drawer0.Screen drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }} activeBackgroundColor='black' name="Flights" component={Flights} />
+            <Drawer0.Screen drawerContentOptions={{activeBackgroundColor:'black'}} name="Train" component={Train} />
             <Drawer0.Screen name="Bus" component={Bus} />
             <Drawer0.Screen name="Hotels" component={Hotels} />
             <Drawer0.Screen name="Web Check-in" component={WebCheckIn} />
