@@ -6,6 +6,7 @@ import Login from './src/screens/login';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignUp from './src/screens/login/signup';
 import { NavigationContainer } from '@react-navigation/native';
+import PRecharge from './src/screens/SimRecharge';
 
 
 function LoginStack() {
@@ -24,7 +25,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaView style={{ flex: 1 }}>
-        <LoginStack />
+        {/* <LoginStack /> */}
+        <PRecharge />
       </SafeAreaView>
     </NavigationContainer>
 

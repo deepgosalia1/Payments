@@ -21,8 +21,8 @@ export default function SCard(props) {
                 <Surface
                     style={[{
                         elevation: 5,
-                        height: 70,
-                        width: 70,
+                        height: 60,
+                        width: 60,
                         borderRadius: 20,
                         alignItems: 'center',
                         justifyContent: 'center'
@@ -31,17 +31,17 @@ export default function SCard(props) {
                     {toFetch &&
                         <CImage
                             uri={props.source}
-                            style={[{ height: 60, width: 60, borderRadius: 15, backgroundColor: 'white' }, props.imageStyle]}
+                            style={[{ height: 50, width: 50, borderRadius: 15, backgroundColor: 'white' }, props.imageStyle]}
                         />
                     }
                     {!toFetch &&
                         <Image
                             source={vehicles[props.type]}
-                            style={[{ height: 60, width: 60, borderRadius: 15, backgroundColor: 'white' }, props.imageStyle]}
+                            style={[{ height: 50, width: 50, borderRadius: 15, backgroundColor: 'white' }, props.imageStyle]}
                         />
                     }
                 </Surface>
-                <Text numberOfLines={1} style={[{ textAlign: 'center', width: 100, marginTop: 5, fontSize: 12, fontWeight: 'bold' }, props.textStyle]}>
+                <Text numberOfLines={1} style={[{ textAlign: 'center', width: 100, marginTop: 5, fontSize: 12, fontWeight: '500' }, props.textStyle]}>
                     {props.title}
                 </Text>
             </View>
