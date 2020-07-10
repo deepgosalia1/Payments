@@ -1,18 +1,70 @@
 // React Imports
-import React from 'react';
+import React, { useState } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import SCard from '../../customcore/SCard';
-import { View, Text, Alert, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Alert, FlatList, TouchableOpacity, Modal, Dimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Divider, Title } from 'react-native-paper';
+import { Divider, Title, Surface, Button } from 'react-native-paper';
 import HCI from '../../customcore/HCI';
 import hoteldata from '../../assets/constants/hoteldata.js'
 
 
+
 export default function Home() {
+
+  const [phoneModal, setPhoneModal] = useState(false)
+  const [otherrechargeModal, setOtherModal] = useState(false)
 
   return (
     <LinearGradient colors={['#ebffff', '#f0ffff', '#f5ffff', '#faffff']} style={{ height: '100%' }} >
+
+      {/* modals for recharges */}
+      <Modal visible={phoneModal} transparent={true} animationType={'fade'} statusBarTranslucent={true}>
+        <View
+          style={{
+            backgroundColor: '#000000d1',
+            // flex: 1,
+            height: '100%',
+            width: '100%',
+            justifyContent: 'center',
+          }}>
+          <Surface
+            style={{ flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', elevation: 10, height: 220, width: Dimensions.get('screen').width - 100, alignSelf: 'center', borderRadius: 10, padding: 20 }}>
+
+            <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
+              <SCard type={'phonerecharge'} title={'Prepaid/Postpaid'} />
+              <SCard type={'phonerecharge'} title={'Landline'} />
+            </View>
+            <Button mode='contained' onPress={() => { setPhoneModal(false) }}>Close</Button>
+          </Surface>
+        </View>
+      </Modal>
+      <Modal visible={otherrechargeModal} transparent={true} animationType={'fade'} statusBarTranslucent={true}>
+        <View
+          style={{
+            backgroundColor: '#000000d1',
+            height: '100%',
+            width: '100%',
+            justifyContent: 'center',
+          }}>
+          <Surface
+            style={{ flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', elevation: 10, height: 300, width: Dimensions.get('screen').width - 100, alignSelf: 'center', borderRadius: 10, padding: 20 }}>
+
+            <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
+              <SCard type={'otherrecharge'} title={'DTH'} />
+              <SCard type={'otherrecharge'} title={'Metro Card'} />
+              <SCard type={'otherrecharge'} title={'Credit Card'} />
+            </View>
+            <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
+              <SCard type={'otherrecharge'} title={'Data Card'} />
+              {/* <SCard type={'otherrecharge'} title={'Landline'} /> */}
+            </View>
+
+            <Button mode='contained' onPress={() => { setOtherModal(false) }}>Close</Button>
+          </Surface>
+        </View>
+      </Modal>
+
       <ScrollView style={{ height: '100%' }}>
 
         <View style={{ marginBottom: 10, width: '100%', height: 70, backgroundColor: 'blue', borderBottomLeftRadius: 35, borderBottomRightRadius: 35 }}>
@@ -22,15 +74,14 @@ export default function Home() {
         </View>
 
         <View style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
-          <Title style={{ marginLeft: 15, marginBottom: 15 }}>Recharge and Billings</Title>
-
+          <Title style={{ marginLeft: 15, marginBottom: 5 }}>Recharge and Billings</Title>
           <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <SCard type='phonerecharge' title={'Phone'} onPress={() => Alert.alert('working')} />
-            <SCard type='otherrecharge' title={'Other Recharge'} />
+            <SCard type='phonerecharge' title={'Phone'} onPress={() => { setPhoneModal(prev => true); console.log('hogaya') }} />
+            <SCard type='otherrecharge' title={'Other Recharge'} onPress={() => setOtherModal(prev => true)} />
             <SCard type='bills' title={'Bills'} />
           </View>
-          <Title style={{ marginTop: 10, marginLeft: 15, marginBottom: 15 }}>Bookings</Title>
 
+          <Title style={{ marginTop: 10, marginLeft: 15, marginBottom: 5 }}>Bookings</Title>
           <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
             <SCard type='flight' title={'Flights'} />
             <SCard type='train' title={'Trains'} />
@@ -39,11 +90,10 @@ export default function Home() {
         </View>
 
 
-        <Divider style={{ borderWidth: 0.3, width: '95%', alignSelf: 'center', marginBottom: 15, marginTop: 15 }} />
+        <Divider style={{ borderWidth: 0.3, width: '95%', alignSelf: 'center', marginBottom: 15, marginTop: 10 }} />
 
 
         <Title style={{ marginLeft: 15 }}> Deals on Hotel Bookings!</Title>
-
         <View
           style={{
             width: '100%',
