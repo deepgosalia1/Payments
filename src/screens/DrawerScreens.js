@@ -8,17 +8,30 @@ import {
 } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { createDrawerNavigator, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
 import Home from './Home';
 import Flights from './Flights';
 import Train from './Train';
 import Hotels from './Hotels';
 import Bus from './Bus';
 import WebCheckIn from './WebCheckIn';
+import CitySelect from './CitySelect';
 import Profile from './Profile';
 import auth from '@react-native-firebase/auth';
 
 
 const Drawer0 = createDrawerNavigator();
+const Stack0 = createStackNavigator();
+
+function FlightStack(props) {
+    return(
+    <Stack0.Navigator headerMode={"none"}>
+        <Stack0.Screen name='Flights' component={Flights}/>
+        <Stack0.Screen name='CitySelect' component={CitySelect}/>
+
+    </Stack0.Navigator>
+    )
+}
 
 function DrawerContent(props) {
     function signOut() {
@@ -79,12 +92,13 @@ export default function DrawerScreen() {
     return (
         <Drawer0.Navigator initialRouteName="Home" drawerContent={props => <DrawerContent {...props} />} >
             <Drawer0.Screen  activeBackgroundColor='black' name="Home" component={Home} />
-            <Drawer0.Screen drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }} activeBackgroundColor='black' name="Flights" component={Flights} />
+            <Drawer0.Screen drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }} activeBackgroundColor='black' name="Flights" component={FlightStack} />
             <Drawer0.Screen drawerContentOptions={{activeBackgroundColor:'black'}} name="Train" component={Train} />
             <Drawer0.Screen name="Bus" component={Bus} />
             <Drawer0.Screen name="Hotels" component={Hotels} />
             <Drawer0.Screen name="Web Check-in" component={WebCheckIn} />
             <Drawer0.Screen name="Profile" component={Profile} />
+
 
         </Drawer0.Navigator>
 

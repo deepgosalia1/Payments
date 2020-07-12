@@ -76,6 +76,7 @@ export default function Login({ navigation }) {
 
     if (!user) {
         return (
+            // forceInset={{ top: 'always' }} use only if needed.
             <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
                 <Surface style={{ elevation: 5, backgroundColor: '#0080ff', height: 200, width: '100%', flexDirection: 'column', alignSelf: 'center', justifyContent: 'center' }}>
                     <Text center h3 color="white" size={45}> Welcome </Text>

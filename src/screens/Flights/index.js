@@ -16,29 +16,43 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SegmentedControl, WhiteSpace, InputItem } from '@ant-design/react-native';
 import DatePicker from '@react-native-community/datetimepicker';
 
-
 import SCard from '../../customcore/SCard';
-import { onChange } from 'react-native-reanimated';
 
-export default function Flights() {
+export default function Flights({navigation}) {
 
   console.disableYellowBox = true;
   var arrowCheck=<TextInput placeholder="arrow" />;
   var displayDate=<Text>hie</Text>
 
-  const [show,setShow] = useState(false);
-  const [date, setDate] = useState(String(new Date()));
+  const [show_arrive,setArriveShow] = useState(false);
+  const [show_depart,setDepartShow] = useState(false);
+  const [date_arrive, setArriveDate] = useState(String(new Date()));
+  const [date_depart, setDepartDate] = useState(String(new Date()));
+  const [from,setDepart] = useState('From');
+  const [to,setArrive] = useState('To');
 
-  const onDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(String(currentDate));
-    console.log(String(currentDate))
+
+
+
+  const onArriveDateChange = (event, selectedDate) => {
+    const currentArriveDate = selectedDate || date_arrive;
+    setArriveShow(Platform.OS === 'ios');
+    setArriveDate(String(currentArriveDate));
+    console.log(String(currentArriveDate))
   };
-  const showDatePicker = () => {
-    setShow(true);
+  const onDepartDateChange = (event, selectedDate) => {
+    const currentDepartDate = selectedDate || date_depart;
+    setDepartShow(Platform.OS === 'ios');
+    setDepartDate(String(currentDepartDate));
+    console.log(String(currentDepartDate))
+  };
+  const showArriveDatePicker = () => {
+    setArriveShow(true);
   };
 
+  const showDepartDatePicker = () => {
+    setDepartShow(true);
+  };
   var yeapnajson = {
     trip:0,
     from:'Mumbai',
@@ -65,29 +79,29 @@ export default function Flights() {
           style={styles.segmentedControl}       />
         <WhiteSpace size="lg" />
         <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
-        <TextInput
-        style={styles.fromto}
-          placeholder="From"
-          clearTextOnFocus='true' />
+        
+        <Text
+          style={styles.fromto}
+          onPress={()=>navigation.navigate('CitySelect')}>{from}</Text>
+    
         <TouchableOpacity style={styles.arrow}>
           {arrowCheck}
         </TouchableOpacity>
-          <TextInput
-        style={styles.fromto}
-        placeholderTextColor
-          placeholder="To"/>
+        <Text
+          style={styles.fromto}
+          onPress={()=>navigation.navigate('CitySelect')}>{to}</Text>
         </View>
       <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-      <TouchableOpacity style={styles.datePicker}onPress={showDatePicker}><Text>{date}</Text></TouchableOpacity>
-        {show && (<DatePicker
-          onChange={onDateChange}
+      <TouchableOpacity style={styles.datePicker}onPress={showDepartDatePicker}><Text>{date_depart}</Text></TouchableOpacity>
+        {show_depart && (<DatePicker
+          onChange={onDepartDateChange}
           value = {new Date}
           mode='date'
           display='default'
         />)}
-        <TouchableOpacity style={styles.datePicker}onPress={showDatePicker}><Text>{date}</Text></TouchableOpacity>
-        {show && (<DatePicker
-          onChange={onDateChange}
+        <TouchableOpacity style={styles.datePicker}onPress={showArriveDatePicker}><Text>{date_arrive}</Text></TouchableOpacity>
+        {show_arrive && (<DatePicker
+          onChange={onArriveDateChange}
           value = {new Date}
           mode='date'
           display='default'
@@ -110,13 +124,14 @@ const styles = StyleSheet.create({
   },
 fromto:{
   width:'40%',
-  alignSelf:'center',
+  textAlignVertical:'center',
   textAlign:'center',
   marginLeft:5,
   marginRight:5,
   borderRadius:5,
   borderWidth:1.5,
   borderColor:'white',
+  color:'grey',
   height:130,
   fontSize:30
 },
