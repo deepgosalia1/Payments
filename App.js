@@ -1,11 +1,13 @@
 import React from 'react';
 import {
-  SafeAreaView,
+  SafeAreaView
 } from 'react-native';
-import Login from './src/screens/login';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignUp from './src/screens/login/signup';
 import { NavigationContainer } from '@react-navigation/native';
+
+import Login from './src/screens/login';
 import PRecharge from './src/screens/SimRecharge';
 
 
@@ -24,10 +26,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <SafeAreaView style={{ flex: 1 }}>
-        {/* <LoginStack /> */}
-        <PRecharge />
-      </SafeAreaView>
+      <SafeAreaProvider style={{ flex: 1 }}>
+        <LoginStack />
+        {/* <PRecharge /> */}
+      </SafeAreaProvider>
     </NavigationContainer>
 
   )
