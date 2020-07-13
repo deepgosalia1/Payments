@@ -4,6 +4,7 @@ import { Input, ButtonGroup } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
 // import Contacts from 'react-native-unified-contacts'
 import Contacts from 'react-native-contacts';
+import { PermissionsAndroid } from 'react-native';
 
 export default function PRecharge(props, { navigation }) {
     const [selectedIndex, setIndex] = useState(0);
@@ -23,10 +24,22 @@ export default function PRecharge(props, { navigation }) {
                 placeholderTextColor={'#4F8EC9'}
                 rightIcon={
                     <TouchableOpacity onPress={() => {
-                        Contacts.getAll((error, contacts) => {
-                            if (error) throw error;
-                            console.log(contacts)
-                        })
+                        PermissionsAndroid.request(
+                            PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+                            {
+                              'title': 'Contacts',
+                              'message': 'This app would like to view your contacts.',
+                              'buttonPositive': 'Please accept bare mortal'
+                            }
+                          ).then(() => {
+                            Contacts.getAll((err, contacts) => {
+                              if (err === 'denied'){
+                                console.log(err)
+                              } else {
+
+                              }
+                            })
+                          })
                     }}>
                         <AntDesign name="contacts" size={30} color="black" />
                     </TouchableOpacity>
