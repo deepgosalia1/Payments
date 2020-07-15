@@ -45,7 +45,7 @@ function DrawerContent(props) {
         <View>
             <TouchableOpacity onPress = {()=> props.navigation.navigate('Profile')}>
             <View style={styles.userInfoSection}>
-                <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                <View style={{ flexDirection: 'row', marginTop: 15 , width:'100%'}}>
                     <Avatar.Image source={{ uri: 'https://api.adorable.io/avatars/50/abott@adorable.png'  }}
                         size={50} />
                     <View style={{ marginLeft: 15, flexDirection: 'column' }}>
@@ -110,6 +110,10 @@ const styles = StyleSheet.create({
     bottomDrawerSection: {
         marginBottom: 15,
         borderTopColor: '#f4f4f4',
-        borderTopWidth: 1
+        borderTopWidth: 1,
+        width:'100%'
     },
+    drawerSection:{
+        width:'100%'
+    }
 })
