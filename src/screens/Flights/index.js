@@ -19,8 +19,6 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 import { SegmentedControl, WhiteSpace, InputItem } from '@ant-design/react-native';
 import DatePicker from '@react-native-community/datetimepicker';
 
-import SCard from '../../customcore/SCard';
-
 export default function Flights({navigation}) {
 
   console.disableYellowBox = true;
@@ -100,6 +98,7 @@ export default function Flights({navigation}) {
           style={styles.fromto}
           onPress={()=>navigation.navigate('CitySelect')}>{to}</Text>
         </View>
+        
       <View style={{flexDirection:'row', justifyContent:'space-around'}}>
       <TouchableOpacity style={styles.datePicker}onPress={showDepartDatePicker}><Text>{date_depart}</Text></TouchableOpacity>
         {show_depart && (<DatePicker

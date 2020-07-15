@@ -17,6 +17,7 @@ import Bus from './Bus';
 import WebCheckIn from './WebCheckIn';
 import CitySelect from './CitySelect';
 import Profile from './Profile';
+import PNR from './PNR';
 import auth from '@react-native-firebase/auth';
 
 
@@ -28,9 +29,27 @@ function FlightStack(props) {
     <Stack0.Navigator headerMode={"none"}>
         <Stack0.Screen name='Flights' component={Flights}/>
         <Stack0.Screen name='CitySelect' component={CitySelect}/>
-
     </Stack0.Navigator>
     )
+}
+function BusStack(props){
+    return(
+        <Stack0.Navigator headerMode={"none"}>
+            <Stack0.Screen name='Bus'component={Bus}/>
+            <Stack0.Screen name='CitySelect' component={CitySelect}/>
+        </Stack0.Navigator>
+        )
+}
+
+function TrainStack(props){
+    return(
+        <Stack0.Navigator headerMode={"none"}>
+            <Stack0.Screen name='Train'component={Train}/>
+            <Stack0.Screen name='CitySelect' component={CitySelect}/>
+            <Stack0.Screen name='PNR'component={PNR}/>
+
+        </Stack0.Navigator>
+        )
 }
 
 function DrawerContent(props) {
@@ -93,8 +112,8 @@ export default function DrawerScreen() {
         <Drawer0.Navigator initialRouteName="Home" drawerContent={props => <DrawerContent {...props} />} >
             <Drawer0.Screen  activeBackgroundColor='black' name="Home" component={Home} />
             <Drawer0.Screen drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }} activeBackgroundColor='black' name="Flights" component={FlightStack} />
-            <Drawer0.Screen drawerContentOptions={{activeBackgroundColor:'black'}} name="Train" component={Train} />
-            <Drawer0.Screen name="Bus" component={Bus} />
+            <Drawer0.Screen drawerContentOptions={{activeBackgroundColor:'black'}} name="Train" component={TrainStack} />
+            <Drawer0.Screen name="Bus" component={BusStack} />
             <Drawer0.Screen name="Hotels" component={Hotels} />
             <Drawer0.Screen name="Web Check-in" component={WebCheckIn} />
             <Drawer0.Screen name="Profile" component={Profile} />
