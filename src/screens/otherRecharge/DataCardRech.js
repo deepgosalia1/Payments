@@ -157,7 +157,7 @@ export default function PRecharge({ navigation }) {
         }else if(selectedIndex===1) {
           setPostpaid(true)
         }else{
-          Alert.alert('Enter valid Mobile number & select the kind of connection (Postpaid/Predpaid)');
+          Alert.alert('Enter valid number & select the kind of connection (Postpaid/Predpaid)');
         }
       }}
       > Proceed </Button>

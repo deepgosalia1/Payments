@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Surface } from 'react-native-paper'
 import CImage from './CImage';
 import { Image, View, Text, TouchableOpacity } from 'react-native'
-export default function SCard(props) {
+export default function SCard(props, {navigation}) {
 
     var vehicles = {
         train: require('../assets/train.png'),

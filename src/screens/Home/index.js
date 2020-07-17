@@ -10,7 +10,7 @@ import hoteldata from '../../assets/constants/hoteldata.js'
 
 
 
-export default function Home() {
+export default function Home(props, { navigation }) {
 
   const [phoneModal, setPhoneModal] = useState(false)
   const [otherrechargeModal, setOtherModal] = useState(false)
@@ -32,13 +32,22 @@ export default function Home() {
             style={{ flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', elevation: 10, height: 220, width: Dimensions.get('screen').width - 100, alignSelf: 'center', borderRadius: 10, padding: 20 }}>
 
             <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
-              <SCard type={'phonerecharge'} title={'Prepaid/Postpaid'} />
-              <SCard type={'phonerecharge'} title={'Landline'} />
+              <SCard type={'phonerecharge'} title={'Prepaid/Postpaid'} onPress={() => {
+                setPhoneModal(false);
+                setOtherModal(false);
+                props.navigation.navigate('PhoneRec');
+              }} />
+              <SCard type={'phonerecharge'} title={'Landline'} onPress={() => {
+                setPhoneModal(false); setOtherModal(false)
+                setPhoneModal(false); setOtherModal(false);
+                props.navigation.navigate('PhoneRec', { screen: 'Landline' });
+              }} />
             </View>
             <Button mode='contained' onPress={() => { setPhoneModal(false) }}>Close</Button>
           </Surface>
         </View>
       </Modal>
+
       <Modal visible={otherrechargeModal} transparent={true} animationType={'fade'} statusBarTranslucent={true}>
         <View
           style={{
@@ -51,13 +60,28 @@ export default function Home() {
             style={{ flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center', elevation: 10, height: 300, width: Dimensions.get('screen').width - 100, alignSelf: 'center', borderRadius: 10, padding: 20 }}>
 
             <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
-              <SCard type={'otherrecharge'} title={'DTH'} />
-              <SCard type={'otherrecharge'} title={'Metro Card'} />
-              <SCard type={'otherrecharge'} title={'Credit Card'} />
+              <SCard type={'otherrecharge'} title={'DTH'} onPress={() => {
+                setPhoneModal(false);
+                setOtherModal(false);
+                props.navigation.navigate('OtherRec', {screen:'DTH'});
+              }}/>
+              <SCard type={'otherrecharge'} title={'Metro Card'} onPress={() => {
+                setPhoneModal(false);
+                setOtherModal(false);
+                props.navigation.navigate('OtherRec', {screen:'Metro'});
+              }}/>
+              <SCard type={'otherrecharge'} title={'Credit Card'} onPress={() => {
+                setPhoneModal(false);
+                setOtherModal(false);
+                props.navigation.navigate('OtherRec', {screen:'Credit'});
+              }}/>
             </View>
             <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
-              <SCard type={'otherrecharge'} title={'Data Card'} />
-              {/* <SCard type={'otherrecharge'} title={'Landline'} /> */}
+              <SCard type={'otherrecharge'} title={'Data Card'} onPress={() => {
+                setPhoneModal(false);
+                setOtherModal(false);
+                props.navigation.navigate('OtherRec', {screen:'Data'});
+              }}/>
             </View>
 
             <Button mode='contained' onPress={() => { setOtherModal(false) }}>Close</Button>
