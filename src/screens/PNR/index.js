@@ -15,7 +15,7 @@ import  LinearGradient  from 'react-native-linear-gradient';
 import DatePicker from '@react-native-community/datetimepicker';
 
 
-export default function Train({navigation}) {
+export default function PNR({navigation}) {
   console.disableYellowBox = true;
   var arrowCheck=<TextInput placeholder="arrow" />;
 
@@ -36,29 +36,10 @@ export default function Train({navigation}) {
   return (
     <LinearGradient colors= {['#ebffff','#f0ffff','#f5ffff','#faffff']} style={{ flex: 1 }} >
       <View style={styles.fromtoView}>
-      <Text
-          style={styles.fromto}
-          onPress={()=>navigation.navigate('CitySelect')}>{from}</Text>
-    
-        <TouchableOpacity style={styles.arrow}>
-          {arrowCheck}
-        </TouchableOpacity>
-        <Text
-          style={styles.fromto}
-          onPress={()=>navigation.navigate('CitySelect')}>{to}</Text>
-      </View>
-
-      <TouchableOpacity style={styles.datePicker}onPress={showDepartDatePicker}><Text>{date_depart}</Text></TouchableOpacity>
-        {show_depart && (<DatePicker
-          onChange={onDepartDateChange}
-          value = {new Date}
-          mode='date'
-          display='default'
-        />)}
+      <TextInput placeholder='Enter PNR Number'/>
+      </View>     
 
       <Button title='search' />
-
-      <Text onPress={()=>navigation.navigate('PNR')}>Check PNR Status</Text>
     </LinearGradient>
   )
 }

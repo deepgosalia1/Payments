@@ -17,6 +17,7 @@ import Bus from './Bus';
 import WebCheckIn from './WebCheckIn';
 import CitySelect from './CitySelect';
 import Profile from './Profile';
+import PNR from './PNR';
 import auth from '@react-native-firebase/auth';
 import PRecharge from './SimRecharge';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -33,7 +34,7 @@ function OtherRechargeTopTabs(props) {
     const Tab = createMaterialTopTabNavigator();
     return (
         <Tab.Navigator initialRouteName={'DTH'} tabBarPosition={'top'} swipeVelocityImpact={0.7}>
-            <Tab.Screen name="DTH" component={DTHRech}/>
+            <Tab.Screen name="DTH" component={DTHRech} />
             <Tab.Screen name="Metro" component={MetroRech} />
             <Tab.Screen name="Credit" component={CreditRech} />
             <Tab.Screen name="Data" component={DataCardRech} />
@@ -74,6 +75,25 @@ function FlightStack(props) {
         </Stack0.Navigator>
     )
 }
+function BusStack(props) {
+    return (
+        <Stack0.Navigator headerMode={"none"}>
+            <Stack0.Screen name='Bus' component={Bus} />
+            <Stack0.Screen name='CitySelect' component={CitySelect} />
+        </Stack0.Navigator>
+    )
+}
+
+function TrainStack(props) {
+    return (
+        <Stack0.Navigator headerMode={"none"}>
+            <Stack0.Screen name='Train' component={Train} />
+            <Stack0.Screen name='CitySelect' component={CitySelect} />
+            <Stack0.Screen name='PNR' component={PNR} />
+
+        </Stack0.Navigator>
+    )
+}
 
 function DrawerContent(props) {
     function signOut() {
@@ -87,7 +107,7 @@ function DrawerContent(props) {
         <View>
             <TouchableOpacity onPress={() => props.navigation.navigate('Profile')}>
                 <View style={styles.userInfoSection}>
-                    <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                    <View style={{ flexDirection: 'row', marginTop: 15, width: '100%' }}>
                         <Avatar.Image source={{ uri: 'https://api.adorable.io/avatars/50/abott@adorable.png' }}
                             size={50} />
                         <View style={{ marginLeft: 15, flexDirection: 'column' }}>
@@ -137,14 +157,14 @@ export default function DrawerScreen() {
         <Drawer0.Navigator initialRouteName="Home" drawerContent={props => <DrawerContent {...props} />} >
             <Drawer0.Screen activeBackgroundColor='black' name="Home" component={HomeStack} />
             <Drawer0.Screen drawerContentOptions={{ activeBackgroundColor: '#5cbbff', activeTintColor: '#ffffff' }} activeBackgroundColor='black' name="Flights" component={FlightStack} />
-            <Drawer0.Screen drawerContentOptions={{ activeBackgroundColor: 'black' }} name="Train" component={Train} />
-            <Drawer0.Screen name="Bus" component={Bus} />
-            <Drawer0.Screen name="Hotels" component={Hotels} />
-            <Drawer0.Screen name="Web Check-in" component={WebCheckIn} />
-            <Drawer0.Screen name="Profile" component={Profile} />
+            <Drawer0.Screen drawerContentOptions={{activeBackgroundColor:'black'}} name="Train" component={TrainStack} />
+            <Drawer0.Screen name="Bus" component={BusStack} />
+        <Drawer0.Screen name="Hotels" component={Hotels} />
+        <Drawer0.Screen name="Web Check-in" component={WebCheckIn} />
+        <Drawer0.Screen name="Profile" component={Profile} />
 
 
-        </Drawer0.Navigator>
+        </Drawer0.Navigator >
 
     )
 }
@@ -154,6 +174,10 @@ const styles = StyleSheet.create({
     bottomDrawerSection: {
         marginBottom: 15,
         borderTopColor: '#f4f4f4',
-        borderTopWidth: 1
+        borderTopWidth: 1,
+        width: '100%'
     },
+    drawerSection: {
+        width: '100%'
+    }
 })
