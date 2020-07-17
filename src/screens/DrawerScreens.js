@@ -29,9 +29,10 @@ import DataCardRech from './otherRecharge/DataCardRech';
 
 
 const Drawer0 = createDrawerNavigator();
+const Stack0 = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 function OtherRechargeTopTabs(props) {
-    const Tab = createMaterialTopTabNavigator();
     return (
         <Tab.Navigator initialRouteName={'DTH'} tabBarPosition={'top'} swipeVelocityImpact={0.7}>
             <Tab.Screen name="DTH" component={DTHRech} />
@@ -53,7 +54,6 @@ function RechargeTopTabs(props) {
 }
 
 function HomeStack(props) {
-    const Stack0 = createStackNavigator();
 
     return (
         <Stack0.Navigator>
@@ -65,7 +65,6 @@ function HomeStack(props) {
 }
 
 function FlightStack(props) {
-    const Stack0 = createStackNavigator();
 
     return (
         <Stack0.Navigator headerMode={"none"}>
