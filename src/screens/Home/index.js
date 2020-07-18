@@ -107,9 +107,9 @@ export default function Home(props, { navigation }) {
 
           <Title style={{ marginTop: 10, marginLeft: 15, marginBottom: 5 }}>Bookings</Title>
           <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <SCard type='flight' title={'Flights'} />
-            <SCard type='train' title={'Trains'} />
-            <SCard type='bus' title={'Bus'} />
+            <SCard type='flight' title={'Flights'} onPress={()=> { props.navigation.navigate('Bookings');}} />
+            <SCard type='train' title={'Trains'} onPress={()=> { props.navigation.navigate('Bookings',{screen:'Train'});}}/>
+            <SCard type='bus' title={'Bus'} onPress={()=> { props.navigation.navigate('Bookings',{screen:'Bus'});}}/>
           </View>
         </View>
 
