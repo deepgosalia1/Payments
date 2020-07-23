@@ -1,5 +1,6 @@
 import config from '../../../config';
 import DrawerScreen from '../DrawerScreens';
+import AppContainer from '../AppContainer';
 import { View, ActivityIndicator, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Text, Input, Button } from 'galio-framework';
 import { Surface } from 'react-native-paper';
@@ -114,6 +115,6 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <DrawerScreen />
+        <AppContainer />
     )
 }

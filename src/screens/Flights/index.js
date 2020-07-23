@@ -33,12 +33,17 @@ export default function Flights({navigation}) {
   const [to,setArrive] = useState('To');
   const [countAdult,setCA] = useState(0);
   const [countChild,setCC] = useState(0);
-  const [classFlight,setClass] = useState(0);
+  const [classFlight,setClass] = useState('');
 
   var radio_props = [
     {label: 'Economy', value: 0 },
     {label: 'Business', value: 1 }
   ];
+
+  const setClass0 = (value)=> {
+    if (value==0){setClass('Economy')}
+    else {setClass('Business')}
+}
 
 
   const onArriveDateChange = (event, selectedDate) => {
@@ -100,6 +105,8 @@ export default function Flights({navigation}) {
         </View>
         
       <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+      <View style={{flexDirection:'column'}}>
+        <Text style={styles.datePicker}>Date of Departure</Text>
       <TouchableOpacity style={styles.datePicker}onPress={showDepartDatePicker}><Text>{date_depart}</Text></TouchableOpacity>
         {show_depart && (<DatePicker
           onChange={onDepartDateChange}
@@ -107,6 +114,9 @@ export default function Flights({navigation}) {
           mode='date'
           display='default'
         />)}
+        </View>
+        <View style={{flexDirection:'column'}}>
+        <Text style={styles.datePicker}>Date of Arrival</Text>
         <TouchableOpacity style={styles.datePicker}onPress={showArriveDatePicker}><Text>{date_arrive}</Text></TouchableOpacity>
         {show_arrive && (<DatePicker
           onChange={onArriveDateChange}
@@ -115,11 +125,23 @@ export default function Flights({navigation}) {
           display='default'
         />)}
         </View>
+        </View>
         <View>
           
           <TouchableOpacity style={styles.passengerView}
             onPress={setModal.bind(this,true)}>
-            <Text style={styles.passengerText}>{countAdult}{countChild}{classFlight}</Text>
+              <View style={{flexDirection:'row',justifyContent:'space-around', width:'100%'}}>
+            <Text style={styles.passengerText}>Adults</Text>
+            <Text style={styles.passengerText}>Children</Text>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-around', width:'100%'}}>
+            <Text style={styles.passengerText}>{countAdult}</Text>
+            <Text style={styles.passengerText}>{countChild}</Text>
+            </View>
+            <View style={{flexDirection:'row',justifyContent:'space-around', width:'100%'}}> 
+            <Text style={styles.passengerText}>Class</Text>
+            <Text style={styles.passengerText}>{classFlight}</Text>
+            </View>
           </TouchableOpacity>
         
           <Modal style={styles.modal}
@@ -163,7 +185,7 @@ export default function Flights({navigation}) {
                   labelHorizontal={true}
                   buttonColor={'green'}
                   animation={true}
-                  onPress={(value)=>setClass(value)}/>
+                  onPress={(value)=>setClass0(value)}/>
               </View>
 
             </View >
@@ -208,12 +230,12 @@ datePicker:{
   alignSelf:'center',
 },
 passengerView:{
-  marginTop:10,
-  margin:5,
+  margin:10,
   borderRadius:5,
   borderWidth:1.5,
-  borderColor:'white',width:'55%',
-  alignSelf:'center',
+  borderColor:'white',
+  alignSelf:'flex-start',
+  
 },
 passengerText:{
   textAlignVertical:'center',

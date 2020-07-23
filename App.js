@@ -91,14 +91,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {/* <SafeAreaProvider style={{ flex: 1 }}> */}
+      <SafeAreaProvider style={{ flex: 1 }}>
         <LoginStack />
         {/* <PRecharge/> */}
         {/* <MetroRech/> */}
         {/* <SmartCardRech/> */}
         {/* <CreditRech/> */}
         {/* <PRecharge contacts={fullcontacts} /> */}
-      {/* </SafeAreaProvider> */}
+      </SafeAreaProvider>
     </NavigationContainer>
 
   )
