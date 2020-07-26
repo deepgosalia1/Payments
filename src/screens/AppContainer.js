@@ -20,11 +20,27 @@ import MetroRech from './otherRecharge/MetroRech';
 import CreditRech from './otherRecharge/CreditRech';
 import DataCardRech from './otherRecharge/DataCardRech';
 import WebCheckIn from './WebCheckIn';
+import WaterBill from './Bills/waterBill';
+import ElectricBill from './Bills/electricity';
+import PipedGas from './Bills/pipedGas';
+import Cylinder from './Bills/cyclinder';
+import LoanBill from './Bills/LoanBill';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialTopTabNavigator();
 
+function UtilityBillsTopTabs(props) {
+    return (
+        <Tab.Navigator tabBarOptions={{labelStyle:{fontSize:11} ,tabStyle:{height:60}, showLabel:true}} initialRouteName={'WaterBill'} tabBarPosition={'top'} swipeVelocityImpact={0.7}>
+            <Tab.Screen name="WaterBill" options={{tabBarLabel:'Water'}} component={WaterBill} />
+            <Tab.Screen name="ElectricBill" options={{tabBarLabel:'Electric'}} component={ElectricBill} />
+            <Tab.Screen name="PGasBill" options={{tabBarLabel:'Piped Gas'}} component={PipedGas} />
+            {/* <Tab.Screen name="CGasBill" options={{tabBarLabel:'Cylinder Booking'}} component={Cylinder} /> */}
+            <Tab.Screen name="LoanBill" options={{tabBarLabel:'Loan'}} component={LoanBill} />
+        </Tab.Navigator>
+    )
+}
 
 function OtherRechargeTopTabs(props) {
     return (
@@ -45,14 +61,15 @@ function RechargeTopTabs(props) {
         </Tab.Navigator>
     )
 }
-function TravelTopStack(props){
-    return(
+function TravelTopStack(props) {
+    return (
         <Tab.Navigator initialRouteName={'Flights'} tabBarPosition={'top'} swipeVelocityImpact={0.7}>
-        <Tab.Screen name="Flights" component={FlightStack} />
-        <Tab.Screen name="Bus" component={BusStack} />
-        <Tab.Screen name = "Train" component={TrainStack} />
-    </Tab.Navigator>
-    )}
+            <Tab.Screen name="Flights" component={FlightStack} />
+            <Tab.Screen name="Bus" component={BusStack} />
+            <Tab.Screen name="Train" component={TrainStack} />
+        </Tab.Navigator>
+    )
+}
 
 function HomeStack(props) {
 
@@ -61,7 +78,9 @@ function HomeStack(props) {
             <Stack.Screen options={{ headerShown: false }} name='Home' component={Home} />
             <Stack.Screen options={{ headerTitle: 'Recharge and Payments' }} name='PhoneRec' component={RechargeTopTabs} />
             <Stack.Screen options={{ headerTitle: 'Recharge and Payments' }} name='OtherRec' component={OtherRechargeTopTabs} />
-        {/* <Stack.Screen options={{headerTitile: 'Bookings'}} name ='Bookings' component={TravelTopStack} /> */}
+            <Stack.Screen options={{ headerTitile: 'Bookings' }} name='Bookings' component={TravelTopStack} />
+            <Stack.Screen options={{ headerTitile: 'Bills' }} name='Bills' component={UtilityBillsTopTabs} />
+
         </Stack.Navigator>
     )
 }
@@ -82,7 +101,7 @@ function FlightStack(props) {
         <Stack.Navigator headerMode={"none"}>
             <Stack.Screen name='Flights' component={Flights} />
             <Stack.Screen name='CitySelect' component={CitySelect} />
-        </Stack.Navigator>    )
+        </Stack.Navigator>)
 }
 
 function BusStack(props) {
@@ -104,9 +123,9 @@ function TrainStack(props) {
         </Stack.Navigator>
     )
 }
-export default function AppContainer(){
-    return(
-        <Drawer.Navigator drawerContent={props => <DrawerContent{...props}/>} >
+export default function AppContainer() {
+    return (
+        <Drawer.Navigator drawerContent={props => <DrawerContent{...props} />} >
             <Drawer.Screen name="Home" component={HomeStack} />
             <Drawer.Screen name="Bookings" component={TravelTopStack} />
             <Drawer.Screen name="Hotels" component={HotelStack} />

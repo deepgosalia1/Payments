@@ -28,12 +28,27 @@ import MetroRech from './otherRecharge/MetroRech';
 import CreditRech from './otherRecharge/CreditRech';
 import DataCardRech from './otherRecharge/DataCardRech';
 import DrawerContent from './DrawerContent';
+import WaterBill from './Bills/waterBill';
+import ElectricBill from './Bills/electricity';
+import PipedGas from './Bills/pipedGas';
+import Cylinder from './Bills/cyclinder';
+import LoanBill from './Bills/LoanBill';
 
 
 const Drawer0 = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-
+function UtilityBillsTopTabs(props) {
+    return (
+        <Tab.Navigator initialRouteName={'WaterBill'} tabBarPosition={'top'} swipeVelocityImpact={0.7}>
+            <Tab.Screen name="WaterBill" component={WaterBill} />
+            <Tab.Screen name="ElectricBill" component={ElectricBill} />
+            <Tab.Screen name="PGasBill" component={PipedGas} />
+            <Tab.Screen name="CGasBill" component={Cylinder} />
+            <Tab.Screen name="LoanBill" component={LoanBill} />
+        </Tab.Navigator>
+    )
+}
 
 function OtherRechargeTopTabs(props) {
     return (
@@ -75,6 +90,7 @@ function HomeStack(props) {
             <Stack.Screen options={{ headerTitle: 'Recharge and Payments' }} name='PhoneRec' component={RechargeTopTabs} />
             <Stack.Screen options={{ headerTitle: 'Recharge and Payments' }} name='OtherRec' component={OtherRechargeTopTabs} />
             <Stack.Screen options={{headerTitile: 'Bookings'}} name ='Bookings' component={TravelTopStack} />
+            <Stack.Screen options={{headerTitile: 'Bills'}} name ='Bills' component={UtilityBillsTopTabs} />
         </Stack.Navigator>
     )
 }
