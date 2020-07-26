@@ -29,13 +29,13 @@ export default function DrawerContent (props){
                             setActive('first')  }} />
                     <DrawerItem    label="Flights"
                         onPress={() => {
-                            props.navigation.navigate('Flights')}}/>
+                            props.navigation.navigate('Bookings',{screen:'Flights'})}}/>
                     <DrawerItem    label="Train"
                         onPress={() => {
-                            props.navigation.navigate('Train')}} />
+                            props.navigation.navigate('Bookings',{screen:'Train'})}} />
                     <DrawerItem    label="Bus"
                         onPress={() => {
-                            props.navigation.navigate('Bus')}}  />
+                            props.navigation.navigate('Bookings',{screen:'Bus'})}}  />
                     <DrawerItem    label="Hotels"
                         onPress={() => { props.navigation.navigate('Hotels') }} />
                     <DrawerItem

@@ -66,6 +66,16 @@ function HomeStack(props) {
     )
 }
 
+
+function HotelStack(props) {
+
+    return (
+        <Stack.Navigator headerMode={"none"}>
+            <Stack.Screen name='Hotels' component={Hotels} />
+            <Stack.Screen name='CitySelect' component={CitySelect} />
+        </Stack.Navigator>    )
+}
+
 function FlightStack(props) {
 
     return (
@@ -98,8 +108,8 @@ export default function AppContainer(){
     return(
         <Drawer.Navigator drawerContent={props => <DrawerContent{...props}/>} >
             <Drawer.Screen name="Home" component={HomeStack} />
-            <Drawer.Screen name="Flights" component={TravelTopStack} />
-            <Drawer.Screen name="Hotels" component={Hotels} />
+            <Drawer.Screen name="Bookings" component={TravelTopStack} />
+            <Drawer.Screen name="Hotels" component={HotelStack} />
         <Drawer.Screen name="WebCheckIn" component={WebCheckIn} />
         <Drawer.Screen name="Profile" component={Profile} />
 

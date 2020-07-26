@@ -6,7 +6,7 @@ import { View, Text, Alert, FlatList, TouchableOpacity, Modal, Dimensions } from
 import { ScrollView } from 'react-native-gesture-handler';
 import { Divider, Title, Surface, Button } from 'react-native-paper';
 import HCI from '../../customcore/HCI';
-import hoteldata from '../../assets/constants/hoteldata.js'
+import hoteldata from '../../assets/constants/hoteldata.js';
 
 
 
@@ -63,25 +63,25 @@ export default function Home(props, { navigation }) {
               <SCard type={'otherrecharge'} title={'DTH'} onPress={() => {
                 setPhoneModal(false);
                 setOtherModal(false);
-                props.navigation.navigate('OtherRec', {screen:'DTH'});
-              }}/>
+                props.navigation.navigate('OtherRec', { screen: 'DTH' });
+              }} />
               <SCard type={'otherrecharge'} title={'Metro Card'} onPress={() => {
                 setPhoneModal(false);
                 setOtherModal(false);
-                props.navigation.navigate('OtherRec', {screen:'Metro'});
-              }}/>
+                props.navigation.navigate('OtherRec', { screen: 'Metro' });
+              }} />
               <SCard type={'otherrecharge'} title={'Credit Card'} onPress={() => {
                 setPhoneModal(false);
                 setOtherModal(false);
-                props.navigation.navigate('OtherRec', {screen:'Credit'});
-              }}/>
+                props.navigation.navigate('OtherRec', { screen: 'Credit' });
+              }} />
             </View>
             <View style={{ flexDirection: 'row', width: Dimensions.get('screen').width - 130, justifyContent: 'space-evenly', height: 100 }}>
               <SCard type={'otherrecharge'} title={'Data Card'} onPress={() => {
                 setPhoneModal(false);
                 setOtherModal(false);
-                props.navigation.navigate('OtherRec', {screen:'Data'});
-              }}/>
+                props.navigation.navigate('OtherRec', { screen: 'Data' });
+              }} />
             </View>
 
             <Button mode='contained' onPress={() => { setOtherModal(false) }}>Close</Button>
@@ -107,9 +107,9 @@ export default function Home(props, { navigation }) {
 
           <Title style={{ marginTop: 10, marginLeft: 15, marginBottom: 5 }}>Bookings</Title>
           <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-            <SCard type='flight' title={'Flights'} onPress={()=> { props.navigation.navigate('Bookings');}} />
-            <SCard type='train' title={'Trains'} onPress={()=> { props.navigation.navigate('Bookings',{screen:'Train'});}}/>
-            <SCard type='bus' title={'Bus'} onPress={()=> { props.navigation.navigate('Bookings',{screen:'Bus'});}}/>
+            <SCard type='flight' title={'Flights'} onPress={() => { props.navigation.navigate('Bookings'); }} />
+            <SCard type='train' title={'Trains'} onPress={() => { props.navigation.navigate('Bookings', { screen: 'Train' }); }} />
+            <SCard type='bus' title={'Bus'} onPress={() => { props.navigation.navigate('Bookings', { screen: 'Bus' }); }} />
           </View>
         </View>
 

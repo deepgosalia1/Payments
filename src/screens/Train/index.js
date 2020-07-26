@@ -20,7 +20,7 @@ export default function Train({navigation}) {
   var arrowCheck=<TextInput placeholder="arrow" />;
 
   const [show_depart,setDepartShow] = useState(false);
-  const [date_depart, setDepartDate] = useState(String(new Date()));
+  const [date_depart, setDepartDate] = useState('Select Date');
   const [from,setDepart] = useState('From');
   const [to,setArrive] = useState('To');
 
@@ -34,7 +34,9 @@ export default function Train({navigation}) {
     setDepartShow(true);
   };
   return (
-    <LinearGradient colors= {['#ebffff','#f0ffff','#f5ffff','#faffff']} style={{ flex: 1 }} >
+    <View  style={{ flex: 1 }} >
+      <Text style={styles.appName}>App_Name</Text>
+
       <View style={styles.fromtoView}>
       <Text
           style={styles.fromto}
@@ -48,7 +50,7 @@ export default function Train({navigation}) {
           onPress={()=>navigation.navigate('CitySelect')}>{to}</Text>
       </View>
 
-      <TouchableOpacity style={styles.datePicker}onPress={showDepartDatePicker}><Text>{date_depart}</Text></TouchableOpacity>
+      <TouchableOpacity style={styles.datePicker}onPress={showDepartDatePicker}><Text  style={{paddingBottom:15}}>{date_depart}</Text></TouchableOpacity>
         {show_depart && (<DatePicker
           onChange={onDepartDateChange}
           value = {new Date}
@@ -56,32 +58,57 @@ export default function Train({navigation}) {
           display='default'
         />)}
 
-      <Button title='search' />
+      <Button title='search' style={styles.searchButton}/>
 
-      <Text onPress={()=>navigation.navigate('PNR')}>Check PNR Status</Text>
-    </LinearGradient>
+      <Text onPress={()=>navigation.navigate('PNR')} style={styles.checkPNR}>Check PNR Status</Text>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  appName: {
+    padding: 20,
+    alignSelf: 'center',
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
 fromtoView:{
-  marginTop:10,
+  width:'100%',
   alignSelf:'center',
-  width:'90%',
-  flexDirection:'column'
+  alignItems:"center",
+  flexDirection:'column',
+  justifyContent:'center',
 
 },
 fromto:{
-  width:'100%',
+  alignSelf:'center',
+  width:'90%',
   textAlignVertical:'center',
   textAlign:'center',
-  marginLeft:5,
-  marginRight:5,
+  margin:2.5,
   borderRadius:5,
   borderWidth:1.5,
-  borderColor:'white',
-  color:'grey',
-  height:130,
-  fontSize:30
+  borderColor:'grey',
+  color:'black',
+  height:70,
+  fontSize:28
+},
+
+datePicker: {
+  
+  margin: 25,
+  borderBottomWidth: 1.5,
+  borderBottomColor: 'black'
+},
+
+searchButton:{
+width:'50%',
+margin: 10
+},
+checkPNR:{
+  margin:25,
+  borderBottomColor:'black',
+  borderBottomWidth:1.5,
+  paddingBottom:15
 },
 })
