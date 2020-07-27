@@ -15,6 +15,7 @@ import DTHRech from './src/screens/otherRecharge/DTHrech';
 import MetroRech from './src/screens/otherRecharge/MetroRech';
 import CreditRech from './src/screens/otherRecharge/CreditRech';
 import SmartCardRech from './src/screens/otherRecharge/metro/smartcard';
+import MainPay from './src/screens/RazorPayTrial';
 
 
 function LoginStack() {
@@ -92,12 +93,13 @@ export default function App() {
   return (
     <NavigationContainer>
       <SafeAreaProvider style={{ flex: 1 }}>
-        <LoginStack />
+        {/* <Logi<nStack /> */}
         {/* <PRecharge/> */}
         {/* <MetroRech/> */}
         {/* <SmartCardRech/> */}
         {/* <CreditRech/> */}
         {/* <PRecharge contacts={fullcontacts} /> */}
+        <MainPay />
       </SafeAreaProvider>
     </NavigationContainer>
 

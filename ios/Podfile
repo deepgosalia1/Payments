@@ -79,6 +79,8 @@ target 'Payments' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-razorpay', :path => '../node_modules/react-native-razorpay'
+
   target 'PaymentsTests' do
     inherit! :complete
     # Pods for testing
